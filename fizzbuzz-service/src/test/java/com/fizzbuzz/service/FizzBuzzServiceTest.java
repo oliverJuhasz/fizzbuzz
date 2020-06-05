@@ -149,7 +149,7 @@ public class FizzBuzzServiceTest {
     }
 
     @Test
-    @DisplayName("generateFizzBuzzUpToNumber should call generateFizzBuzzUpToNumber")
+    @DisplayName("generateFizzBuzzUpToNumber should call generateFizzBuzzUpToNumber if number greater than 0")
     public void test11() {
         // GIVEN
         FizzBuzzService fizzBuzzService = spy(FizzBuzzService.class);
@@ -159,7 +159,7 @@ public class FizzBuzzServiceTest {
         fizzBuzzService.generateFizzBuzzUpToNumber(input);
 
         // THEN
-        verify(fizzBuzzService).convertNumberToFizzBuzz(anyLong());
+        verify(fizzBuzzService, atLeastOnce()).convertNumberToFizzBuzz(anyLong());
     }
 
     @ParameterizedTest
