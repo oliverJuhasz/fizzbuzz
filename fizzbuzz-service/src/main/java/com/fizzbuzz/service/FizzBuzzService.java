@@ -14,6 +14,7 @@ public class FizzBuzzService {
             throw new IllegalArgumentException("Input shouldn't be less than zero");
         }
         List<String> fizzBuzzes = new ArrayList<>();
+        convertNumberToFizzBuzz(12L);
         return fizzBuzzes;
     }
 
