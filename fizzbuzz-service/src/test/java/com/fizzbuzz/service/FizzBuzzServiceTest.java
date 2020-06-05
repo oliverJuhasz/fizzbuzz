@@ -1,11 +1,9 @@
 package com.fizzbuzz.service;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
@@ -79,5 +77,18 @@ public class FizzBuzzServiceTest {
 
         // THEN
         assertEquals("fizz", result);
+    }
+
+    @ParameterizedTest
+    @DisplayName("convertNumberToFizzBuzz should return buzz if number is divisible by 5")
+    @ValueSource(longs = {5, 10, 20, 25, 35, 40, 50})
+    public void test6(long input) {
+        // GIVEN as parameter
+
+        // WHEN
+        String result = underTest.convertNumberToFizzBuzz(input);
+
+        // THEN
+        assertEquals("buzz", result);
     }
 }
