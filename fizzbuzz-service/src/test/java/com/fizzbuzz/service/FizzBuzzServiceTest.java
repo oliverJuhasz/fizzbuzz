@@ -120,4 +120,14 @@ public class FizzBuzzServiceTest {
         // THEN
         assertNotNull(result);
     }
+
+    @Test
+    @DisplayName("generateFizzBuzzUpToNumber shouldn't accept negative numbers")
+    public void test9() {
+        // GIVEN
+        long input = -1L;
+
+        // THEN
+        assertThrows(IllegalArgumentException.class, () -> underTest.generateFizzBuzzUpToNumber(input));
+    }
 }
