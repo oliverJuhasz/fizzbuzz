@@ -13,7 +13,7 @@ public class FizzBuzzService {
     }
 
     public String convertNumberToFizzBuzz(long number) {
-        return null;
+        return "not null";
     }
 
 }
