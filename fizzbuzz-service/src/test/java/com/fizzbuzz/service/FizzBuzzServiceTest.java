@@ -39,4 +39,14 @@ public class FizzBuzzServiceTest {
         // THEN
         Assertions.assertThrows(IllegalArgumentException.class, () -> underTest.convertNumberToFizzBuzz(input));
     }
+
+    @Test
+    @DisplayName("convertNumberToFizzBuzz should return empty array if imput is 0")
+    public void test3() {
+        // GIVEN
+        long input = -1L;
+
+        // THEN
+        Assertions.assertThrows(IllegalArgumentException.class, () -> underTest.convertNumberToFizzBuzz(input));
+    }
 }
