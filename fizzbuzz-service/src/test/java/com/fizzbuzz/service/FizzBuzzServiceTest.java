@@ -162,15 +162,14 @@ public class FizzBuzzServiceTest {
         verify(fizzBuzzService).convertNumberToFizzBuzz(anyLong());
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("generateFizzBuzzUpToNumber should return the correct size of list based on the input")
     @ValueSource(longs = {5, 20, 1000})
-    public void test12(int number) {
-        // GIVEN
-        long input = 20L;
+    public void test12(long number) {
+        // GIVEN as parameter
 
         // WHEN
-        List<String> result = underTest.generateFizzBuzzUpToNumber(input);
+        List<String> result = underTest.generateFizzBuzzUpToNumber(number);
 
         // THEN
         assertEquals(number, result.size());
