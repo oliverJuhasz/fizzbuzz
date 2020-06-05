@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FizzBuzzServiceTest {
 
+
     @InjectMocks
     private FizzBuzzService underTest;
 
@@ -90,5 +91,18 @@ public class FizzBuzzServiceTest {
 
         // THEN
         assertEquals("buzz", result);
+    }
+
+    @ParameterizedTest
+    @DisplayName("convertNumberToFizzBuzz should return fizzbuzz if number is divisible by both 3 and 5")
+    @ValueSource(longs = {15, 30, 45, 60, 75, 90, 105})
+    public void test7(long input) {
+        // GIVEN as parameter
+
+        // WHEN
+        String result = underTest.convertNumberToFizzBuzz(input);
+
+        // THEN
+        assertEquals("fizzbuzz", result);
     }
 }
