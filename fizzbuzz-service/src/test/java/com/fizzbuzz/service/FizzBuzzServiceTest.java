@@ -29,4 +29,14 @@ public class FizzBuzzServiceTest {
         // THEN
         Assertions.assertNotNull(result);
     }
+
+    @Test
+    @DisplayName("convertNumberToFizzBuzz shouldn't accept negative numbers")
+    public void test2() {
+        // GIVEN
+        long input = -1L;
+
+        // THEN
+        Assertions.assertThrows(IllegalArgumentException.class, () -> underTest.convertNumberToFizzBuzz(input));
+    }
 }
