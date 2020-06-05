@@ -6,11 +6,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.internal.matchers.Any;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class FizzBuzzServiceTest {
 
@@ -142,5 +146,19 @@ public class FizzBuzzServiceTest {
 
         // THEN
         assertEquals(0, result.size());
+    }
+
+    @Test
+    @DisplayName("generateFizzBuzzUpToNumber should call generateFizzBuzzUpToNumber")
+    public void test11() {
+        // GIVEN
+        FizzBuzzService fizzBuzzService = spy(FizzBuzzService.class);
+        long input = 10;
+
+        // WHEN
+        fizzBuzzService.generateFizzBuzzUpToNumber(input);
+
+        // THEN
+        verify(fizzBuzzService).convertNumberToFizzBuzz(anyLong());
     }
 }
