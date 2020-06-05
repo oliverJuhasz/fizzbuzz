@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FizzBuzzServiceIntegrationTest {
 
+
     @InjectMocks
     private FizzBuzzService underTest;
 
@@ -49,5 +50,4 @@ public class FizzBuzzServiceIntegrationTest {
         // THEN
         assertEquals(expected, result);
     }
-
 }
