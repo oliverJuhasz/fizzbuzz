@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FizzBuzzServiceTest {
@@ -104,5 +106,18 @@ public class FizzBuzzServiceTest {
 
         // THEN
         assertEquals("fizzbuzz", result);
+    }
+
+    @Test
+    @DisplayName("generateFizzBuzzUpToNumber shouldn't return null")
+    public void test8() {
+        // GIVEN
+        long input = 10L;
+
+        // WHEN
+        List<String> result = underTest.generateFizzBuzzUpToNumber(input);
+
+        // THEN
+        assertNotNull(result);
     }
 }
