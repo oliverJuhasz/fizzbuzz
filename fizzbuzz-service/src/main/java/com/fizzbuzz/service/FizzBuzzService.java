@@ -16,7 +16,7 @@ public class FizzBuzzService {
         if (number <= 0) {
             throw new IllegalArgumentException("Input shouldn't be less than or equal to zero");
         }
-        return "not null";
+        return String.valueOf(number);
     }
 
 }
