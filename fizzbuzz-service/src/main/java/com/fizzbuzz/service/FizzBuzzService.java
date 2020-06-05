@@ -16,14 +16,16 @@ public class FizzBuzzService {
         if (number <= 0) {
             throw new IllegalArgumentException("Input shouldn't be less than or equal to zero");
         }
+        String result = "";
         if (number % 3 == 0) {
-            return "fizz";
+            result += "fizz";
         }
-        else if (number % 5 == 0) {
-            return "buzz";
-        } else {
-            return String.valueOf(number);
+        if (number % 5 == 0) {
+            result += "buzz";
         }
+        if (result.length() == 0) {
+            result = String.valueOf(number);
+        }
+        return result;
     }
-
 }
