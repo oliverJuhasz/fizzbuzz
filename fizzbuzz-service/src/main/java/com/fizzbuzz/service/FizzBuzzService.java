@@ -13,6 +13,9 @@ public class FizzBuzzService {
     }
 
     public String convertNumberToFizzBuzz(long number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Input shouldn't be less than zero");
+        }
         return "not null";
     }
 
