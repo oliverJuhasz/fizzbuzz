@@ -164,7 +164,8 @@ public class FizzBuzzServiceTest {
 
     @Test
     @DisplayName("generateFizzBuzzUpToNumber should return the correct size of list based on the input")
-    public void test12() {
+    @ValueSource(longs = {5, 20, 1000})
+    public void test12(int number) {
         // GIVEN
         long input = 20L;
 
@@ -172,6 +173,6 @@ public class FizzBuzzServiceTest {
         List<String> result = underTest.generateFizzBuzzUpToNumber(input);
 
         // THEN
-        assertEquals(20, result.size());
+        assertEquals(number, result.size());
     }
 }
