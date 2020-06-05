@@ -10,6 +10,9 @@ public class FizzBuzzService {
 
 
     public List<String> generateFizzBuzzUpToNumber(long number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Input shouldn't be less than zero");
+        }
         List<String> fizzBuzzes = new ArrayList<>();
         return fizzBuzzes;
     }
