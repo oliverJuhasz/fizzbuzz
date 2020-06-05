@@ -161,4 +161,17 @@ public class FizzBuzzServiceTest {
         // THEN
         verify(fizzBuzzService).convertNumberToFizzBuzz(anyLong());
     }
+
+    @Test
+    @DisplayName("generateFizzBuzzUpToNumber should return the correct size of list based on the input")
+    public void test12() {
+        // GIVEN
+        long input = 20L;
+
+        // WHEN
+        List<String> result = underTest.generateFizzBuzzUpToNumber(input);
+
+        // THEN
+        assertEquals(20, result.size());
+    }
 }
