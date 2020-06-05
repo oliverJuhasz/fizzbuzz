@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FizzBuzzServiceTest {
 
@@ -32,7 +32,7 @@ public class FizzBuzzServiceTest {
         String result = underTest.convertNumberToFizzBuzz(input);
 
         // THEN
-        Assertions.assertNotNull(result);
+        assertNotNull(result);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class FizzBuzzServiceTest {
         long input = -1L;
 
         // THEN
-        Assertions.assertThrows(IllegalArgumentException.class, () -> underTest.convertNumberToFizzBuzz(input));
+        assertThrows(IllegalArgumentException.class, () -> underTest.convertNumberToFizzBuzz(input));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class FizzBuzzServiceTest {
         long input = 0L;
 
         // THEN
-        Assertions.assertThrows(IllegalArgumentException.class, () -> underTest.convertNumberToFizzBuzz(input));
+        assertThrows(IllegalArgumentException.class, () -> underTest.convertNumberToFizzBuzz(input));
     }
 
     @ParameterizedTest
