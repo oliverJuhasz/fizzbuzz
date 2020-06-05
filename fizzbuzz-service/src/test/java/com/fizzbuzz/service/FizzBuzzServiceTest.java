@@ -41,10 +41,10 @@ public class FizzBuzzServiceTest {
     }
 
     @Test
-    @DisplayName("convertNumberToFizzBuzz should return empty array if imput is 0")
+    @DisplayName("convertNumberToFizzBuzz should throw illegal argument exception if parameter is zero")
     public void test3() {
         // GIVEN
-        long input = -1L;
+        long input = 0L;
 
         // THEN
         Assertions.assertThrows(IllegalArgumentException.class, () -> underTest.convertNumberToFizzBuzz(input));
