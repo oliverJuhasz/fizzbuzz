@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>fizzbuzz-service</module>
+        <module>fizzbuzz-web</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
