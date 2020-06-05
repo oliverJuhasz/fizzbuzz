@@ -56,7 +56,7 @@ public class FizzBuzzServiceTest {
     }
 
     @ParameterizedTest
-    @DisplayName("convertNumberToFizzBuzz should return the number if it is not devisable by three or five")
+    @DisplayName("convertNumberToFizzBuzz should return the number if it is not divisible by three or five")
     @ValueSource(longs = {1, 2, 4, 7, 8, 11, 13})
     public void test4(long input) {
         // GIVEN as parameter
@@ -66,5 +66,18 @@ public class FizzBuzzServiceTest {
 
         // THEN
         assertEquals(String.valueOf(input), result);
+    }
+
+    @ParameterizedTest
+    @DisplayName("convertNumberToFizzBuzz should return fizz if number is divisible by 3")
+    @ValueSource(longs = {3, 6, 9, 12, 18, 21, 24})
+    public void test5(long input) {
+        // GIVEN as parameter
+
+        // WHEN
+        String result = underTest.convertNumberToFizzBuzz(input);
+
+        // THEN
+        assertEquals("fizz", result);
     }
 }
