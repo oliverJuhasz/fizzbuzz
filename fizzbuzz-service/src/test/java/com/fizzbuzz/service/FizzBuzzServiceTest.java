@@ -130,4 +130,17 @@ public class FizzBuzzServiceTest {
         // THEN
         assertThrows(IllegalArgumentException.class, () -> underTest.generateFizzBuzzUpToNumber(input));
     }
+
+    @Test
+    @DisplayName("generateFizzBuzzUpToNumber should return empty array if input is 0")
+    public void test10() {
+        // GIVEN
+        long input = 0L;
+
+        // WHEN
+        List<String> result = underTest.generateFizzBuzzUpToNumber(input);
+
+        // THEN
+        assertEquals(0, result.size());
+    }
 }
