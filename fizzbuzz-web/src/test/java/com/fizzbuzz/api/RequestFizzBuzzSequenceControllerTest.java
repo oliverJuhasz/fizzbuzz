@@ -106,4 +106,39 @@ public class RequestFizzBuzzSequenceControllerTest {
         // THEN
         Assertions.assertFalse(response.isSuccess());
     }
+
+    @Test
+    @DisplayName("Calling getFizzBuzzSequenceFromPath with invalid request returns an unsuccessful response")
+    public void test5() throws Exception {
+        // GIVEN
+
+        // WHEN
+        MvcResult mvcResult = mockMvc
+                .perform(MockMvcRequestBuilders
+                        .get(API_GET_FIZZ_BUZZ_SEQUENCE + "/-5"))
+                .andReturn();
+        String content = mvcResult.getResponse().getContentAsString();
+        FizzBuzzResponse response = objectMapper.readValue(content, FizzBuzzResponse.class);
+
+        // THEN
+        Assertions.assertFalse(response.isSuccess());
+    }
+
+    @Test
+    @DisplayName("Calling getFizzBuzzSequenceFromPath with valid request returns a successful response")
+    public void test6() throws Exception {
+        // GIVEN
+
+        // WHEN
+        MvcResult mvcResult = mockMvc
+                .perform(MockMvcRequestBuilders
+                        .get(API_GET_FIZZ_BUZZ_SEQUENCE + "/5"))
+                .andReturn();
+        String content = mvcResult.getResponse().getContentAsString();
+        FizzBuzzResponse response = objectMapper.readValue(content, FizzBuzzResponse.class);
+
+        // THEN
+        Assertions.assertTrue(response.isSuccess());
+    }
+
 }
