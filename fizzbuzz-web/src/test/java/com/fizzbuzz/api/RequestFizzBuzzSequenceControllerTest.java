@@ -131,11 +131,12 @@ public class RequestFizzBuzzSequenceControllerTest {
     @DisplayName("Calling getFizzBuzzSequenceFromPath with valid request returns a successful response")
     public void test6() throws Exception {
         // GIVEN
+        String suffix = "/5";
 
         // WHEN
         MvcResult mvcResult = mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get(API_GET_FIZZ_BUZZ_SEQUENCE + "/5"))
+                        .get(API_GET_FIZZ_BUZZ_SEQUENCE + suffix))
                 .andReturn();
         String content = mvcResult.getResponse().getContentAsString();
         FizzBuzzResponse response = objectMapper.readValue(content, FizzBuzzResponse.class);
