@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fizzbuzz.api.request.FizzBuzzRequest;
 import com.fizzbuzz.api.request.FizzBuzzResponse;
 import com.fizzbuzz.service.FizzBuzzService;
 import org.junit.jupiter.api.Assertions;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -63,10 +65,27 @@ public class RequestFizzBuzzSequenceControllerTest {
         // WHEN
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
         String content = mvcResult.getResponse().getContentAsString();
-        mvcResult.getResponse().getContentType();
         FizzBuzzResponse response = objectMapper.readValue(content, FizzBuzzResponse.class);
 
         // THEN
         Assertions.assertFalse(response.isSuccess());
+    }
+
+    @Test
+    @DisplayName("Calling api with valid request returns a successful response")
+    public void test3() throws Exception {
+        // GIVEN
+        String uri = "/api/getFizzBuzzSequence";
+        FizzBuzzRequest fizzBuzzRequest = new FizzBuzzRequest();
+        fizzBuzzRequest.setHighestNumber(5L);
+        String fizzBuzzRequestJSON = objectMapper.writeValueAsString(fizzBuzzRequest);
+
+        // WHEN
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(uri).contentType(MediaType.APPLICATION_JSON_VALUE).content(fizzBuzzRequestJSON)).andReturn();
+        String content = mvcResult.getResponse().getContentAsString();
+        FizzBuzzResponse response = objectMapper.readValue(content, FizzBuzzResponse.class);
+
+        // THEN
+        Assertions.assertTrue(response.isSuccess());
     }
 }
