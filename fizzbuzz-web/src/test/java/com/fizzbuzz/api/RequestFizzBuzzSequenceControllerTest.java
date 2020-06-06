@@ -67,6 +67,6 @@ public class RequestFizzBuzzSequenceControllerTest {
         FizzBuzzResponse response = objectMapper.readValue(content, FizzBuzzResponse.class);
 
         // THEN
-        Assertions.assertEquals(200, 200);
+        Assertions.assertFalse(response.isSuccess());
     }
 }
