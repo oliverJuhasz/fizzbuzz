@@ -28,6 +28,12 @@ public class RequestFizzBuzzSequenceController {
         this.fizzBuzzService = fizzBuzzService;
     }
 
+    /** Get mapping for fizzbuzz sequence. Requires a JSON object with "highestNumber" key.
+     *
+     * @param request Target of data binding
+     * @param bindingResult Result of data binding
+     * @return FizzBuzzResponse
+     */
     @GetMapping("/getFizzBuzzSequence")
     public FizzBuzzResponse getFizzBuzzSequence(@RequestBody @Valid FizzBuzzRequest request, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -36,6 +42,11 @@ public class RequestFizzBuzzSequenceController {
         return createSuccessfulFizzBuzzResponse(request);
     }
 
+    /** Get mapping for fizzbuzz sequence. Takes a path variable.
+     *
+     * @param highestNumber The last element of the fizzbuzz sequence
+     * @return FizzBuzzResponse
+     */
     @GetMapping("/getFizzBuzzSequence/{highestNumber}")
     public FizzBuzzResponse getFizzBuzzSequenceFromPath(@PathVariable("highestNumber") @Min(1) long highestNumber) {
         FizzBuzzRequest fizzBuzzRequest = new FizzBuzzRequest();
