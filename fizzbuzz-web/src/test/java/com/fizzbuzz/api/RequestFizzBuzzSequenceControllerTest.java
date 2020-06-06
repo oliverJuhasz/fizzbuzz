@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -107,15 +109,16 @@ public class RequestFizzBuzzSequenceControllerTest {
         Assertions.assertFalse(response.isSuccess());
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("Calling getFizzBuzzSequenceFromPath with invalid request returns an unsuccessful response")
-    public void test5() throws Exception {
+    @ValueSource(strings = {"-1", "0", "abc", "10000000000000000000000000000000000"})
+    public void test5(String postfix) throws Exception {
         // GIVEN
 
         // WHEN
         MvcResult mvcResult = mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get(API_GET_FIZZ_BUZZ_SEQUENCE + "/-5"))
+                        .get(API_GET_FIZZ_BUZZ_SEQUENCE + "/" + postfix))
                 .andReturn();
         String content = mvcResult.getResponse().getContentAsString();
         FizzBuzzResponse response = objectMapper.readValue(content, FizzBuzzResponse.class);
