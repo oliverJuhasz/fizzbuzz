@@ -81,7 +81,12 @@ public class RequestFizzBuzzSequenceControllerTest {
         String fizzBuzzRequestJSON = objectMapper.writeValueAsString(fizzBuzzRequest);
 
         // WHEN
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(uri).contentType(MediaType.APPLICATION_JSON_VALUE).content(fizzBuzzRequestJSON)).andReturn();
+        MvcResult mvcResult = mockMvc
+                .perform(MockMvcRequestBuilders
+                        .get(uri)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(fizzBuzzRequestJSON))
+                .andReturn();
         String content = mvcResult.getResponse().getContentAsString();
         FizzBuzzResponse response = objectMapper.readValue(content, FizzBuzzResponse.class);
 
