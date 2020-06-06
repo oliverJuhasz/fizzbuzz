@@ -37,7 +37,7 @@ public class RequestFizzBuzzSequenceControllerTest {
     }
 
     @Test
-    @DisplayName("Calling api returns response")
+    @DisplayName("Calling getFizzBuzzSequence returns response")
     public void test1() throws Exception {
         // GIVEN
 
@@ -50,7 +50,7 @@ public class RequestFizzBuzzSequenceControllerTest {
     }
 
     @Test
-    @DisplayName("Calling api without data returns an unsuccessful response")
+    @DisplayName("Calling getFizzBuzzSequence without data returns an unsuccessful response")
     public void test2() throws Exception {
         // GIVEN
 
@@ -64,7 +64,7 @@ public class RequestFizzBuzzSequenceControllerTest {
     }
 
     @Test
-    @DisplayName("Calling api with valid request returns a successful response")
+    @DisplayName("Calling getFizzBuzzSequence with valid request returns a successful response")
     public void test3() throws Exception {
         // GIVEN
         FizzBuzzRequest fizzBuzzRequest = new FizzBuzzRequest();
@@ -86,7 +86,7 @@ public class RequestFizzBuzzSequenceControllerTest {
     }
 
     @Test
-    @DisplayName("Calling api with invalid request returns an unsuccessful response")
+    @DisplayName("Calling getFizzBuzzSequence with invalid request returns an unsuccessful response")
     public void test4() throws Exception {
         // GIVEN
         FizzBuzzRequest fizzBuzzRequest = new FizzBuzzRequest();
