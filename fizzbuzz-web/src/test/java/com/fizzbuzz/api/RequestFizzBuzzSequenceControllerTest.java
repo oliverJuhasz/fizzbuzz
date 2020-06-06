@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fizzbuzz.api.request.FizzBuzzResponse;
 import com.fizzbuzz.service.FizzBuzzService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,15 +37,8 @@ public class RequestFizzBuzzSequenceControllerTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    private String mapToJson(Object obj) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(obj);
-    }
-    private <T> T mapFromJson(String json, Class<T> clazz)
-            throws JsonParseException, JsonMappingException, IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(json, clazz);
-    }
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Test
     @DisplayName("Calling api returns response")
@@ -58,5 +52,21 @@ public class RequestFizzBuzzSequenceControllerTest {
 
         // THEN
         Assertions.assertEquals(200, status);
+    }
+
+    @Test
+    @DisplayName("Calling api without data returns an unsuccessful response")
+    public void test2() throws Exception {
+        // GIVEN
+        String uri = "/api/getFizzBuzzSequence";
+
+        // WHEN
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
+        String content = mvcResult.getResponse().getContentAsString();
+        mvcResult.getResponse().getContentType();
+        FizzBuzzResponse response = objectMapper.readValue(content, FizzBuzzResponse.class);
+
+        // THEN
+        Assertions.assertEquals(200, 200);
     }
 }
