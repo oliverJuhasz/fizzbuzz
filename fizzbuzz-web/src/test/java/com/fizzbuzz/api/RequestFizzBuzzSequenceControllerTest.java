@@ -1,6 +1,9 @@
 package com.fizzbuzz.api;
 
-import com.fizzbuzz.api.request.FizzBuzzResponse;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fizzbuzz.service.FizzBuzzService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,12 +16,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import java.io.IOException;
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -33,6 +34,16 @@ public class RequestFizzBuzzSequenceControllerTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
+    }
+
+    private String mapToJson(Object obj) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.writeValueAsString(obj);
+    }
+    private <T> T mapFromJson(String json, Class<T> clazz)
+            throws JsonParseException, JsonMappingException, IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(json, clazz);
     }
 
     @Test
