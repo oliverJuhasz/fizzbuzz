@@ -6,14 +6,18 @@ import com.fizzbuzz.service.FizzBuzzService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api")
+@Validated
 public class RequestFizzBuzzSequenceController {
 
 
@@ -30,6 +34,13 @@ public class RequestFizzBuzzSequenceController {
             return createFailedFizzBuzzResponse();
         }
         return createSuccessfulFizzBuzzResponse(request);
+    }
+
+    @GetMapping("/getFizzBuzzSequence/{highestNumber}")
+    public FizzBuzzResponse getFizzBuzzSequenceFromPath(@PathVariable("highestNumber") @Min(1) long highestNumber) {
+        FizzBuzzRequest fizzBuzzRequest = new FizzBuzzRequest();
+        fizzBuzzRequest.setHighestNumber(highestNumber);
+        return createSuccessfulFizzBuzzResponse(fizzBuzzRequest);
     }
 
     private FizzBuzzResponse createSuccessfulFizzBuzzResponse(FizzBuzzRequest request) {
@@ -50,7 +61,7 @@ public class RequestFizzBuzzSequenceController {
                 .build();
     }
 
-    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ExceptionHandler({HttpMessageNotReadableException.class, MethodArgumentTypeMismatchException.class, javax.validation.ConstraintViolationException.class})
     private FizzBuzzResponse handleException() {
         return createFailedFizzBuzzResponse();
     }
