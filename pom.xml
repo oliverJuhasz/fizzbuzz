@@ -15,7 +15,7 @@
     </parent>
     <groupId>com.fizz</groupId>
     <artifactId>fizzbuzz</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>fizzbuzz</name>
     <description>Demo fizzbuzz implementation project</description>
 
