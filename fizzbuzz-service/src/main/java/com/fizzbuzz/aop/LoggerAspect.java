@@ -35,7 +35,7 @@ public class LoggerAspect {
         }
         stringBuilder.append("\nReturn value: ").append(returnValue == null ? "No return value" : returnValue).append("\nExecution time: ")
                 .append(stopTotalTime);
-        log.trace(stringBuilder.toString());
+        log.info(stringBuilder.toString());
         return returnValue;
     }
     
